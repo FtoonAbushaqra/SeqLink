@@ -9,7 +9,7 @@ This work is built on top of publicly available implementations of ODE-RNN  and 
 
 ## Model Overview
 
-![Model Architecture](path/to/your/model_image.png)
+![Model Architecture](Model++ (2)-1.png)
 
 We build our code on the publicly available code for ODE-RNN at [Yulia Rubanova's GitHub](https://github.com/YuliaRubanova/latent_ode), using PyTorch. For the baselines (RNN-VAE, Latent ODE, and ODE-RNN) we follow the implementation available at [Yulia Rubanova's GitHub](https://github.com/YuliaRubanova/latent_ode). For the CDE model, we follow the implementation available at [Patrick Kidger's GitHub](https://github.com/patrick-kidger/NeuralCDE). For TSMixer we follow the implementation available at [ditschuk's GitHub](https://github.com/ditschuk/pytorch-tsmixer).
 
