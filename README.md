@@ -1,7 +1,7 @@
 # SeqLink: A Robust Neural-ODE Architecture for Modelling Partially Observed Time Series
 
 
-This repository contains the code for our enhanced Neural-ODE Architecture. The code is written in PyTorch and follows the methodology described in our paper available on [OpenReview]([link_to_your_paper](https://openreview.net/forum?id=WCUT6leXKf)).
+This repository contains the code for our enhanced Neural-ODE Architecture. The code is written in PyTorch and follows the methodology described in our paper available on [OpenReview\SeqLink](https://openreview.net/forum?id=WCUT6leXKf).
 
 
 ## Model Overview
