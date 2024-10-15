@@ -74,7 +74,7 @@ parser.add_argument('--ode-rnn',default= 'ode-rnn', action='store_true', help="R
 
 parser.add_argument('--rnn-vae', action='store_true', help="Run RNN baseline: seq2seq model with sampling of the h0 and ELBO loss.")
 
-parser.add_argument('-l', '--latents', type=int, default=6, help="Size of the latent state")
+parser.add_argument('-l', '--latents', type=int, default=10, help="Size of the latent state")
 parser.add_argument('--rec-dims', type=int, default=20, help="Dimensionality of the recognition model (ODE or RNN).")
 
 parser.add_argument('--rec-layers', type=int, default=1, help="Number of layers in ODE func in recognition ODE")
