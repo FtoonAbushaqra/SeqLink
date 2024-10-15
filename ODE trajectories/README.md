@@ -5,11 +5,13 @@ Code for the paper:
 [[arxiv]](https://arxiv.org/abs/1907.03907)
 
 ## Updates and Modifications
-Modifications have been made to the original code by Futoon  Abushaqra
+**Modifications** have been made to the original code by Futoon  Abushaqra
 
 The modifications are marked with comments in the code (e.g., # Modified code).
 
 These changes are in the follwoing files  [run_models, utils, ode_rnn, parse_data, likelihood_eval, encoder_decoder, base_model].
+
+The original instructions provided below can still be used to run this modified code.
 
 <p align="center">
 <img align="middle" src="./assets/viz.gif" width="800" />
