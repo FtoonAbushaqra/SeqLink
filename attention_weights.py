@@ -42,7 +42,7 @@ dataset_size = 100  # 500
 sequence_size = 100
 dim_size = 1
 latent_rep_size = 10
-p_l = 4
+p_l = 3
 
 
 trajectories = read_csv(r'dataRep\D24.csv' , header=None)
@@ -168,12 +168,12 @@ for q in range(dataset_size):
     labels = torch.from_numpy(labels)
     labels = labels.float()
  
-    GODEL5 = alllevellatent[q][0]
-    GODEL4 = alllevellatent[q][1]
-    GODEL3 = alllevellatent[q][2]
-    GODEL2 = alllevellatent[q][3]
-    GODEL1 = alllevellatent[q][4]
-    Dpt.append((record_id, tt, vals, mask , labels, GODEL5, GODEL4,GODEL3,GODEL2, GODEL1))
+    
+    GODEL4 = alllevellatent[q][0]
+    GODEL3 = alllevellatent[q][1]
+    GODEL2 = alllevellatent[q][2]
+    GODEL1 = alllevellatent[q][3]
+    Dpt.append((record_id, tt, vals, mask , labels,  GODEL4,GODEL3,GODEL2, GODEL1))
 
 torch.save(
 				Dpt,
