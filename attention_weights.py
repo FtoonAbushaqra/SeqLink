@@ -42,7 +42,7 @@ dataset_size = 100  # 500
 sequence_size = 100
 dim_size = 1
 latent_rep_size = 10
-
+p_l = 4
 
 
 trajectories = read_csv(r'dataRep\D24.csv' , header=None)
@@ -64,7 +64,7 @@ for i in range(dataset_size):
 
 
 
-Y= data #.detach().numpy()
+Y= original_data #.detach().numpy()
 
 inp1 = keras.Input(shape = (dim_size, sequence_size))
 inp2 = keras.Input(shape = (dataset_size, sequence_size*latent_rep_size))
@@ -86,4 +86,96 @@ output_before_att = new_model.predict([x1,X2])
 #plt.show()
 
 np.savetxt('Attention_weights.csv',output_before_att, delimiter=",")
+
+Scoredata = output_before_att[:,sequence_size:]
+Scoredata = Scoredata*100
+latentdata = trajectories
+
+alllevellatent = []
+for s in range(dataset_size): 
+    latent = []
+    sample = (Scoredata[s, :])
+    L = sample.copy()
+    mask = sample.copy()
+    MeanV = 0
+    alllevel = []
+    for i in range(p_l):
+        # print (i)
+        MeanV = np.median(L)
+        sm = L <= MeanV
+        lr = L > MeanV
+        mask[mask <= MeanV] = i + 100
+        L = L[lr]
+
+   
+    smellest = mask < 100
+    mask[smellest] = i + 1 + 100
+    dataset = pd.DataFrame({'data': s, 'rate': mask}, columns=['data', 'rate'])
+    dataset2 = dataset.groupby(['rate']).mean()
+
+    mask = mask.reshape(dataset_size, 1)
+    unique, counts = np.unique(mask, return_counts=True)
+    result = np.column_stack((unique, counts))
+
+    sub = np.concatenate((latentdata, mask), axis=1)
+    for j in [100, 101, 102, 103, 104]:
+        sub2 = sub[:, sequence_size*latent_rep_size] == j  # Change based on tp
+
+        sub3 = sub[sub2]
+        sub3 = np.delete(sub3, -1, axis=1)
+        sub3 = sub3.reshape(sub3.shape[0], sequence_size, latent_rep_size)  # shapeoftimeserise and latent
+        sub3 = torch.from_numpy(sub3)
+        sub3 = sub3.float()
+        Avrglatent = torch.mean(sub3, dim=0)
+        if (torch.isnan(Avrglatent).any()):
+            print("True")
+            print(s)
+            print(j)
+            exit()
+        latent.append((Avrglatent))
+    alllevellatent.append((latent))
+
+
+
+
+Dpt = []
+
+
+
+t =np.array([i for i in range (sequence_size)])
+for q in range(dataset_size):
+    record_id = q
+    record_id = str(record_id)
+
+    tt = t  
+    tt = torch.from_numpy(tt)
+    tt = tt.float()
+
+    vals = original_data[q]
+    mask = vals.copy()
+    vals = torch.from_numpy(vals)
+    vals = vals.float()
+
+    where_are_NaNs = np.isnan(mask)
+    mask[~where_are_NaNs] = 1
+    mask[where_are_NaNs] = 0
+ 
+    mask = torch.from_numpy(mask)
+
+    mask = mask.float()
+
+    labels = Y[q]
+    labels = torch.from_numpy(labels)
+    labels = labels.float()
+ 
+    GODEL5 = alllevellatent[q][0]
+    GODEL4 = alllevellatent[q][1]
+    GODEL3 = alllevellatent[q][2]
+    GODEL2 = alllevellatent[q][3]
+    GODEL1 = alllevellatent[q][4]
+    Dpt.append((record_id, tt, vals, mask , labels, GODEL5, GODEL4,GODEL3,GODEL2, GODEL1))
+
+torch.save(
+				Dpt,
+				r'finaldata.pt')
 
