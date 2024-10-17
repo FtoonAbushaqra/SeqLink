@@ -30,12 +30,13 @@ to generate the final prediction, please use the .pt dataset that already includ
 
 ## Repository Structure
 
-- `src/`: Contains the source code for the model, attention mechanism, and pyramid sorting.
-- `data/`: Example data files used for training and testing.
-- `notebooks/`: Jupyter notebooks demonstrate the use of the model and visualize results.
-- `docs/`: Documentation and additional resources.
+- `Link_ODE/`: Contains the source code for the SeqLink model, attention mechanism, and pyramid sorting.
+- `data/`: Example data files used.
+- `ODE trajectories/`: Contains the source code for the ODE auto-encoder model.
 
-## Installation
+
+## Prerequisites
+Install torchdiffeq from https://github.com/rtqichen/torchdiffeq.
 
 To install the required dependencies, run:
 
