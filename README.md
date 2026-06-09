@@ -41,5 +41,20 @@ To install the required dependencies, run:
 
 ```bash
 pip install -r requirements.txt
+```
 
+## Citation
 
+If you use this code, please cite our paper:
+
+```bibtex
+@article{
+abushaqra2024seqlink,
+title={SeqLink: A Robust Neural-{ODE} Architecture for Modelling Partially Observed Time Series},
+author={Futoon M. Abushaqra and Hao Xue and Yongli Ren and Flora D. Salim},
+journal={Transactions on Machine Learning Research},
+issn={2835-8856},
+year={2024},
+url={https://openreview.net/forum?id=WCUT6leXKf},
+note={}
+}
